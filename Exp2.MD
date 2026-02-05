@@ -1,5 +1,4 @@
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
+```sql
 MariaDB [(none)]> SHOW DATABASES;
 +--------------------+
 | Database           |
@@ -12,7 +11,9 @@ MariaDB [(none)]> SHOW DATABASES;
 | test               |
 +--------------------+
 6 rows in set (0.004 sec)
-
+```
+USING manish DATABASE:
+```SQL
 MariaDB [(none)]> USE manish;
 Database changed
 MariaDB [manish]> SHOW TABLES;
@@ -23,9 +24,12 @@ MariaDB [manish]> SHOW TABLES;
 | employee         |
 +------------------+
 2 rows in set (0.001 sec)
-
+```
+1.List all distinct job in employee
+```SQL
 MariaDB [manish]> SELECT DISTINCT JOB
     -> FROM employee;
+```
 +-----------+
 | JOB       |
 +-----------+
@@ -36,14 +40,12 @@ MariaDB [manish]> SELECT DISTINCT JOB
 | PRESIDENT |
 +-----------+
 5 rows in set (0.013 sec)
-
-MariaDB [manish]> SELECT *
-    -> FROM EMPLOYEE
-    -> WHEREDEPTNO =30;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '=30' at line 3
+2.List all information about employee in department number 30.
+```sql
 MariaDB [manish]> SELECT *
     -> FROM employee
     -> WHERE DEPTNO = 30;
+```
 +-------+--------+----------+------+------------+------+------+--------+
 | EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
 +-------+--------+----------+------+------------+------+------+--------+
@@ -56,9 +58,12 @@ MariaDB [manish]> SELECT *
 +-------+--------+----------+------+------------+------+------+--------+
 6 rows in set (0.032 sec)
 
+3.Find all department number with department names greater than 20.
+```SQL
 MariaDB [manish]> SELECT DISTINCT DEPTNO
     -> FROM employee
     -> WHERE DEPTNO > 20;
+```
 +--------+
 | DEPTNO |
 +--------+
@@ -66,57 +71,13 @@ MariaDB [manish]> SELECT DISTINCT DEPTNO
 +--------+
 1 row in set (0.002 sec)
 
-MariaDB [manish]> SELECT DISTINCT DEPTNO
-    -> FROM employee
-    -> WHERE DEPTNO>20;
-+--------+
-| DEPTNO |
-+--------+
-|     30 |
-+--------+
-1 row in set (0.001 sec)
-
-MariaDB [manish]> SELECT * FROM employee;
-+-------+--------+-----------+------+------------+------+------+--------+
-| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
-+-------+--------+-----------+------+------------+------+------+--------+
-|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |
-|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |
-|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  300 |     30 |
-|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
-|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |
-|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |
-|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |
-|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |
-|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
-|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 |    0 |     30 |
-|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |
-|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |
-|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
-|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |
-+-------+--------+-----------+------+------------+------+------+--------+
-14 rows in set (0.001 sec)
-
-MariaDB [manish]> SELECT *
-    -> FROM employee
-    -> WHERE DEPTNO =30
-    -> AND JOB IN ('MANAGER','CLERK);
-    '> ;
-    '> ;
-    '> ;
-    '> SHD;
-    '> ;;
-    '> EE;
-    '> FFJ;
-    '> ;
-    '> ;
-    '> ;
-    '> AND JOB IN ('MANAGER','CLERK);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MANAGER','CLERK)' at line 4
+4.Find all information about all the managers as well as the c;erks in department 30.
+```SQL
 MariaDB [manish]> SELECT *
     -> FROM employee
     -> WHERE DEPTNO =30
     -> AND JOB IN ('MANAGER','CLERK');
+```
 +-------+-------+---------+------+------------+------+------+--------+
 | EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
 +-------+-------+---------+------+------------+------+------+--------+
@@ -125,9 +86,12 @@ MariaDB [manish]> SELECT *
 +-------+-------+---------+------+------------+------+------+--------+
 2 rows in set (0.001 sec)
 
+5.List the employee name,employee numbers,and department of all clerks.
+```SQL
 MariaDB [manish]> SELECT ENAME,EMPNO,DEPTNO
     -> FROM employee
     -> WHERE JOB ='CLERK';
+```
 +--------+-------+--------+
 | ENAME  | EMPNO | DEPTNO |
 +--------+-------+--------+
@@ -138,10 +102,13 @@ MariaDB [manish]> SELECT ENAME,EMPNO,DEPTNO
 +--------+-------+--------+
 4 rows in set (0.001 sec)
 
+6.Find all managers not in department 30.
+```SQL
 MariaDB [manish]> SELECT *
     -> FROM employee
     -> WHERE JOB ='MANAGER'
     -> AND DEPTNO <> 30;
+```
 +-------+-------+---------+------+------------+------+------+--------+
 | EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
 +-------+-------+---------+------+------------+------+------+--------+
@@ -150,10 +117,13 @@ MariaDB [manish]> SELECT *
 +-------+-------+---------+------+------------+------+------+--------+
 2 rows in set (0.031 sec)
 
+7.List information about all employees in department 10 who are not managers and clerks.
+```SQL
 MariaDB [manish]> SELECT *
     -> FROM employee
     -> WHERE DEPTNO =10
     -> AND JOB NOT IN ('MANAGER','CLERK');
+```
 +-------+-------+-----------+------+------------+------+------+--------+
 | EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
 +-------+-------+-----------+------+------------+------+------+--------+
@@ -161,9 +131,12 @@ MariaDB [manish]> SELECT *
 +-------+-------+-----------+------+------------+------+------+--------+
 1 row in set (0.002 sec)
 
+8.Find employees and jobs earning  between 1200 and 1400.
+```SQL
 MariaDB [manish]> SELECT ENAME,JOB,SAL
     -> FROM employee
     -> WHERE SAL BETWEEN 1200 AND 1400;
+```
 +--------+----------+------+
 | ENAME  | JOB      | SAL  |
 +--------+----------+------+
@@ -173,9 +146,12 @@ MariaDB [manish]> SELECT ENAME,JOB,SAL
 +--------+----------+------+
 3 rows in set (0.001 sec)
 
+9.List name and department number of employee who are clerks, analyst or salesman.
+```SQL
 MariaDB [manish]> SELECT ENAME,DEPTNO
     -> FROM employee
     -> WHERE JOB IN('CLERK','ANALYST','SALESMAN');
+```
 +--------+--------+
 | ENAME  | DEPTNO |
 +--------+--------+
@@ -192,9 +168,12 @@ MariaDB [manish]> SELECT ENAME,DEPTNO
 +--------+--------+
 10 rows in set (0.001 sec)
 
+10.List name and department numabers of employee who names began with M.
+```SQL
 MariaDB [manish]> SELECT ENAME,DEPTNO
     -> FROM employee
     -> WHERE ENAME LIKE 'M%';
+```
 +--------+--------+
 | ENAME  | DEPTNO |
 +--------+--------+
