@@ -1,5 +1,7 @@
-
+###1.showing dtaabsstfhxbh
+```sql
 MariaDB [(none)]> SHOW DATABASES;
+```
 +--------------------+
 | Database           |
 +--------------------+
