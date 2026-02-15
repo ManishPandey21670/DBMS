@@ -1,5 +1,5 @@
-###1.showing dtaabsstfhxbh
-```sql
+###1.Showing Databases
+```SQL
 MariaDB [(none)]> SHOW DATABASES;
 ```
 +--------------------+
@@ -14,21 +14,13 @@ MariaDB [(none)]> SHOW DATABASES;
 +--------------------+
 6 rows in set (0.107 sec)
 
-MariaDB [(none)]> USE manish;
-Database changed
-MariaDB [manish]> SHOW TABLES;
-+------------------+
-| Tables_in_manish |
-+------------------+
-| department       |
-| employee         |
-+------------------+
-2 rows in set (0.001 sec)
-
+###1.Display the list of employees who have joined the company before 30th June 80 or after 31st Dec 81.
+```SQL
 MariaDB [manish]> SELECT *
     -> FROM employee
     -> WHERE HIREDATE <'1980-06-30'
     -> OR HIREDATE > '1981-12-31';
+```
 +-------+--------+---------+------+------------+------+------+--------+
 | EMPNO | ENAME  | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
 +-------+--------+---------+------+------------+------+------+--------+
@@ -38,9 +30,12 @@ MariaDB [manish]> SELECT *
 +-------+--------+---------+------+------------+------+------+--------+
 3 rows in set (0.078 sec)
 
+###2.Display the names of employees whose names have second alphabet A in their names.
+```SQL
 MariaDB [manish]> SELECT ENAME
     -> FROM employee
     -> WHERE ENAME LIKE '_A%';
+```
 +--------+
 | ENAME  |
 +--------+
@@ -50,9 +45,12 @@ MariaDB [manish]> SELECT ENAME
 +--------+
 3 rows in set (0.001 sec)
 
+###3.Display the names of employees whose name is exactly five characters in length.
+```SQL
 MariaDB [manish]> SELECT ENAME
     -> FROM employee
     -> WHERE LENGTH(ENAME)=5;
+```
 +-------+
 | ENAME |
 +-------+
@@ -67,9 +65,12 @@ MariaDB [manish]> SELECT ENAME
 +-------+
 8 rows in set (0.001 sec)
 
+###4.Display the names of employees who are not working as salesman or clerk or analyst.
+```SQL
 MariaDB [manish]> SELECT ENAME,JOB
     -> FROM employee
     -> WHERE JOB NOT IN ('SALESMAN','CLERK','ANALYST');
+```
 +-------+-----------+
 | ENAME | JOB       |
 +-------+-----------+
@@ -80,9 +81,12 @@ MariaDB [manish]> SELECT ENAME,JOB
 +-------+-----------+
 4 rows in set (0.001 sec)
 
+###5.Display the name of the employee along with their annual salary (sal*12). The name of the employee earning highest salary should appear first.
+```SQL
 MariaDB [manish]> SELECT ENAME, SAL*12 AS ANNUAL_SALARY
     -> FROM employee
     -> ORDER BY SAL DESC;
+```
 +--------+---------------+
 | ENAME  | ANNUAL_SALARY |
 +--------+---------------+
@@ -103,16 +107,8 @@ MariaDB [manish]> SELECT ENAME, SAL*12 AS ANNUAL_SALARY
 +--------+---------------+
 14 rows in set (0.001 sec)
 
-MariaDB [manish]> SELECT ENAME,
-    -> SAL,
-    -> SAL*0.15 AS HRA,
-    -> SAL*0.10 AS DA,
-    -> SAL*0.05 AS PF,
-    -> (SAL+(SAL*0.15)+(SAL*0.10)-(SAL*0.05)) AS TOTAL_SALARY,
-    -> FROM employee
-    -> ORDER BY TOTAL_SALARY;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM employee
-ORDER BY TOTAL_SALARY' at line 7
+###6.Display name, sal, hra, pf, da, totalsal for each employee. The output should be in the order of total sal, hra 15% of sal, da 10% of sal, pf 5% of sal. Total salary will be (salhrada)-pf
+```SQL
 MariaDB [manish]> SELECT ENAME,
     -> SAL,
     -> SAL*0.15 AS HRA,
@@ -121,6 +117,7 @@ MariaDB [manish]> SELECT ENAME,
     -> (SAL+(SAL*0.15)+(SAL*0.10)-(SAL*0.05)) AS TOTAL_SALARY
     -> FROM employee
     -> ORDER BY TOTAL_SALARY;
+```
 +--------+------+--------+--------+--------+--------------+
 | ENAME  | SAL  | HRA    | DA     | PF     | TOTAL_SALARY |
 +--------+------+--------+--------+--------+--------------+
@@ -141,6 +138,8 @@ MariaDB [manish]> SELECT ENAME,
 +--------+------+--------+--------+--------+--------------+
 14 rows in set (0.001 sec)
 
+###7.Update the salary of each employee by 10% increment who are not eligible for commission.
+```SQL
 MariaDB [manish]> UPDATE employee
     -> SET SAL =SAL*.10
     -> WHERE COMM IS NULL;
@@ -148,6 +147,7 @@ Query OK, 10 rows affected (0.003 sec)
 Rows matched: 10  Changed: 10  Warnings: 0
 
 MariaDB [manish]> SELECT *FROM employee;
+```
 +-------+--------+-----------+------+------------+------+------+--------+
 | EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
 +-------+--------+-----------+------+------------+------+------+--------+
@@ -168,15 +168,21 @@ MariaDB [manish]> SELECT *FROM employee;
 +-------+--------+-----------+------+------------+------+------+--------+
 14 rows in set (0.001 sec)
 
+###8.Display those employees whose salary is more than 3000 after giving 20% increment.
+```SQL
 MariaDB [manish]> SELECT ENAME,SAL, SAL*1.20 AS
     -> INCREMENTED_SALARY
     -> FROM employee
     -> WHERE SAL*1.20>3000;
+```
 Empty set (0.001 sec)
 
+###9.Display those employees whose salary is more than 3000 after giving 20% increment.
+```SQL
 MariaDB [manish]> SELECT ENAME,SAL
     -> FROM employee
     -> WHERE SAL>=100;
+```
 +--------+------+
 | ENAME  | SAL  |
 +--------+------+
