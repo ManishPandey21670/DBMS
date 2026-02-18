@@ -13,7 +13,7 @@ SHOWING DATABASES
 ```
 CREATE DATABASE WITH YOUR NAME 
 ```sql
- CREATE DATABASE omisha;
+ CREATE DATABASE manish;
 Query OK 
 ```
 SHOW THE DATABSE THAT YOU HAVE CREATED 
@@ -24,7 +24,7 @@ SHOW DATABASES;
 +--------------------+
 | information_schema |
 | mysql              |
-| omisha             |
+| manish            |
 | performance_schema |
 | phpmyadmin         |
 | test               |
@@ -32,7 +32,7 @@ SHOW DATABASES;
 ```
 USE THE DATABASE THAT YOU HAVE CREATED
 ```sql
-USE omisha;
+USE manish;
 Database changed
 ```
 CREATE TABLE WITH NAME DEPARTMENT
