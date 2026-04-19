@@ -117,7 +117,7 @@ FROM EMPLOYEE e
 JOIN DEPARTMENT d ON e.DEPTNO = d.DEPTNO;
 ```
 11. Display employee name and department name for each employee.
-```SQL
+```
 SELECT e.ENAME, d.DNAME
 FROM EMPLOYEE e
 JOIN DEPARTMENT d ON e.DEPTNO = d.DEPTNO;
